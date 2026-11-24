@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pong">
+  <meta name="description" content="Klassisk Pong för två spelare över nätet">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <title>Pong Online</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="court" width="200" height="320" aria-label="Spelplan"></canvas>
+
+    <section id="lobby" class="overlay">
+      <div class="panel">
+        <h1>PONG</h1>
+        <p class="tagline">Först till 7 · två spelare på nätet</p>
+        <button type="button" id="btn-create" class="btn primary">Skapa spel</button>
+        <div class="or">eller</div>
+        <form id="join-form" autocomplete="off">
+          <label for="code-input" class="sr">Rumskod</label>
+          <input id="code-input" name="code" type="text" inputmode="text" maxlength="6" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Ange kod" aria-label="Ange kod">
+          <button type="submit" id="btn-join" class="btn">Gå med</button>
+        </form>
+        <p id="lobby-error" class="error" hidden></p>
+        <p id="install-hint" class="hint">Tips: öppna i Safari och välj Dela → Lägg till på hemskärmen.</p>
+      </div>
+    </section>
+
+    <section id="waiting" class="overlay" hidden>
+      <div class="panel">
+        <h2>Väntar på motståndare</h2>
+        <p class="code-label">Rumskod</p>
+        <p id="room-code" class="code">————</p>
+        <div class="row">
+          <button type="button" id="btn-share" class="btn primary">Dela länk</button>
+          <button type="button" id="btn-copy" class="btn">Kopiera länk</button>
+        </div>
+        <p id="copy-status" class="hint" hidden></p>
+        <button type="button" id="btn-cancel" class="btn ghost">Avbryt</button>
+      </div>
+    </section>
+
+    <section id="hud" hidden>
+      <div id="toast" hidden></div>
+      <div id="endcard" class="panel" hidden>
+        <h2 id="end-title"></h2>
+        <p id="end-score"></p>
+        <p id="end-wait" class="hint" hidden>Väntar på motståndaren…</p>
+        <button type="button" id="btn-again" class="btn primary">Spela igen</button>
+        <button type="button" id="btn-home" class="btn ghost">Till startsidan</button>
+      </div>
+      <div id="disconnect" class="panel" hidden>
+        <h2>Motståndaren lämnade</h2>
+        <p>Spelet avbröts.</p>
+        <button type="button" id="btn-disc-home" class="btn primary">Till startsidan</button>
+      </div>
+    </section>
+  </div>
+  <script src="/client.js" defer></script>
+</body>
+</html>
